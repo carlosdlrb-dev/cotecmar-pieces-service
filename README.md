@@ -4,9 +4,34 @@ Servicio de gestion de proyectos, bloques y piezas con API REST en JSON.
 
 ## Requisitos
 
-- PHP 8.2+
-- Composer
+- PHP 8.2+ y Composer (ejecucion local)
+- Docker y Docker Compose (ejecucion con contenedores)
 - JWT Secret compartido con el Auth Service
+
+## Docker
+
+### Puertos
+
+| Servicio   | Puerto host | Puerto interno |
+|------------|-------------|----------------|
+| App (HTTP) | `8001`      | `80`           |
+| MySQL      | `3308`      | `3306`         |
+
+> El puerto `3308` evita conflicto con otros servicios del sistema que ocupan el `3307`.
+
+### Levantar con Docker
+
+```bash
+docker compose up -d --build
+```
+
+### Conexion externa a la base de datos (TablePlus, DBeaver, etc.)
+
+- **Host:** `localhost`
+- **Puerto:** `3308`
+- **Base de datos:** `pieces_service`
+- **Usuario:** `pieces_user`
+- **Contraseña:** `pieces_password`
 
 ## Variables de entorno
 
@@ -15,7 +40,7 @@ Servicio de gestion de proyectos, bloques y piezas con API REST en JSON.
 - `JWT_SECRET` debe ser exactamente el mismo valor que usa el Auth Service
 - `DB_*`
 
-## Instalacion y ejecucion
+## Instalacion y ejecucion local
 
 ```bash
 composer install
