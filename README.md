@@ -4,7 +4,7 @@ Servicio de gestion de proyectos, bloques y piezas con API REST en JSON.
 
 ## Requisitos
 
-- PHP 8.2+ y Composer (ejecucion local)
+- PHP 8.4+ y Composer (ejecucion local)
 - Docker y Docker Compose (ejecucion con contenedores)
 - JWT Secret compartido con el Auth Service
 
