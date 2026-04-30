@@ -19,6 +19,7 @@ Servicio de gestion de proyectos, bloques y piezas con API REST en JSON.
 
 ```bash
 composer install
+cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
