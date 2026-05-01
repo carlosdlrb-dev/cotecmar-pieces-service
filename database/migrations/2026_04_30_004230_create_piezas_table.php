@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\EstadoPieza;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->decimal('peso_teorico', 12, 3);
             $table->decimal('peso_real', 12, 3)->nullable();
             $table->decimal('diferencia_peso', 12, 3)->nullable();
-            $table->string('estado')->default('pendiente');
+            $table->string('estado')->default(EstadoPieza::Pendiente->value);
+            $table->timestamp('fecha_fabricacion')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
