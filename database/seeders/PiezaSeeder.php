@@ -24,22 +24,24 @@ class PiezaSeeder extends Seeder
             $pesoReal = $pesoTeorico + (($index % 2 === 0) ? 2.5 : -1.5);
 
             Pieza::query()->insert([
+                // Pendiente: solo peso teórico, sin peso real aún
                 [
                     'bloque_id' => $bloque->id,
                     'codigo' => "P{$bloque->id}A",
                     'peso_teorico' => $pesoTeorico,
-                    'peso_real' => $pesoReal,
-                    'diferencia_peso' => $pesoReal - $pesoTeorico,
+                    'peso_real' => null,
+                    'diferencia_peso' => null,
                     'estado' => 'pendiente',
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
+                // Fabricada: con peso real y diferencia calculada
                 [
                     'bloque_id' => $bloque->id,
                     'codigo' => "P{$bloque->id}B",
                     'peso_teorico' => $pesoTeorico + 10,
-                    'peso_real' => $pesoTeorico + 9,
-                    'diferencia_peso' => -1,
+                    'peso_real' => $pesoReal,
+                    'diferencia_peso' => $pesoReal - ($pesoTeorico + 10),
                     'estado' => 'fabricada',
                     'created_at' => now(),
                     'updated_at' => now(),
