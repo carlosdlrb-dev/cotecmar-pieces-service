@@ -86,6 +86,7 @@ Accept: application/json
 - `POST /api/v1/bloques/{bloque}/piezas`
 - `GET /api/v1/piezas/{id}`
 - `PUT /api/v1/piezas/{id}`
+- `PUT /api/v1/piezas/{id}/fabricar`
 - `DELETE /api/v1/piezas/{id}`
 
 ### Reportes
