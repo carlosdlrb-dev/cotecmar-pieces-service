@@ -23,9 +23,8 @@ class UpdatePiezaRequest extends FormRequest
     {
         return [
             'codigo' => ['nullable', 'string', 'max:100'],
-            'peso_teorico' => ['sometimes', 'required', 'numeric'],
-            'peso_real' => ['sometimes', 'required', 'numeric'],
-            'estado' => ['sometimes', 'required', 'in:pendiente,fabricada'],
+            'peso_teorico' => ['sometimes', 'required', 'numeric', 'min:0.01', 'max:999999.999'],
+            'peso_real' => ['sometimes', 'required', 'numeric', 'min:0.01', 'max:999999.999'],
         ];
     }
 }

@@ -23,7 +23,7 @@ class StorePiezaRequest extends FormRequest
     {
         return [
             'codigo' => ['nullable', 'string', 'max:100'],
-            'peso_teorico' => ['required', 'numeric'],
+            'peso_teorico' => ['required', 'numeric', 'min:0.01', 'max:999999.999'],
         ];
     }
 }
