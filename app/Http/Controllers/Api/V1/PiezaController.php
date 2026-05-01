@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\EstadoPieza;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FabricarPiezaRequest;
 use App\Http\Requests\StorePiezaRequest;
 use App\Http\Requests\UpdatePiezaRequest;
 use App\Models\Bloque;
@@ -70,6 +72,26 @@ class PiezaController extends Controller
         }
 
         $pieza->update($data);
+
+        return response()->json($pieza);
+    }
+
+    public function fabricar(FabricarPiezaRequest $request, Pieza $pieza): JsonResponse
+    {
+        if ($pieza->estado !== EstadoPieza::Pendiente) {
+            return response()->json([
+                'message' => 'Solo se pueden fabricar piezas en estado pendiente.',
+            ], 422);
+        }
+
+        $pesoReal = $request->validated()['peso_real'];
+
+        $pieza->update([
+            'peso_real'         => $pesoReal,
+            'diferencia_peso'   => $pieza->peso_teorico - $pesoReal,
+            'estado'            => EstadoPieza::Fabricada,
+            'fecha_fabricacion' => now(),
+        ]);
 
         return response()->json($pieza);
     }

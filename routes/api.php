@@ -18,6 +18,7 @@ Route::prefix('v1')->middleware('jwt')->group(function () {
 
     Route::get('piezas', [PiezaController::class, 'index']);
     Route::post('bloques/{bloque}/piezas', [PiezaController::class, 'store']);
+    Route::put('piezas/{pieza}/fabricar', [PiezaController::class, 'fabricar']);
     Route::apiResource('piezas', PiezaController::class)->except(['index', 'store']);
 
     Route::get('reportes/pendientes-por-proyecto', [ReporteController::class, 'pendientesPorProyecto']);
