@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('bloque_id')->constrained('bloques')->cascadeOnDelete();
             $table->string('codigo')->nullable();
             $table->decimal('peso_teorico', 12, 3);
-            $table->decimal('peso_real', 12, 3);
-            $table->decimal('diferencia_peso', 12, 3);
+            $table->decimal('peso_real', 12, 3)->nullable();
+            $table->decimal('diferencia_peso', 12, 3)->nullable();
             $table->string('estado')->default('pendiente');
             $table->timestamps();
             $table->softDeletes();

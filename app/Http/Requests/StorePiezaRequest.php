@@ -24,8 +24,6 @@ class StorePiezaRequest extends FormRequest
         return [
             'codigo' => ['nullable', 'string', 'max:100'],
             'peso_teorico' => ['required', 'numeric'],
-            'peso_real' => ['required', 'numeric'],
-            'estado' => ['required', 'in:pendiente,fabricada'],
         ];
     }
 }

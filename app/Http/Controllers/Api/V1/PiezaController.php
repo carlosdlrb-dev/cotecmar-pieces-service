@@ -40,7 +40,6 @@ class PiezaController extends Controller
     public function store(StorePiezaRequest $request, Bloque $bloque): JsonResponse
     {
         $data = $request->validated();
-        $data['diferencia_peso'] = $data['peso_real'] - $data['peso_teorico'];
 
         $pieza = $bloque->piezas()->create($data);
 
@@ -65,7 +64,9 @@ class PiezaController extends Controller
         if (array_key_exists('peso_real', $data) || array_key_exists('peso_teorico', $data)) {
             $pesoReal = $data['peso_real'] ?? $pieza->peso_real;
             $pesoTeorico = $data['peso_teorico'] ?? $pieza->peso_teorico;
-            $data['diferencia_peso'] = $pesoReal - $pesoTeorico;
+            if ($pesoReal !== null && $pesoTeorico !== null) {
+                $data['diferencia_peso'] = $pesoReal - $pesoTeorico;
+            }
         }
 
         $pieza->update($data);
